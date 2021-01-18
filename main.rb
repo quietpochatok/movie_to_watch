@@ -13,18 +13,23 @@ filenames = "#{__dir__}/data/"
 #   end
 
 # directors = films.map(&:director).uniq
+puts ConsoleInterface.greeting_user
+variant_for_recom_films = ConsoleInterface.choice_variant_for_recomendation
 
-#films = FilmCollection.from_dir(filenames)
-films = FilmCollection.from_site
+films =
+  if variant_for_recom_films == 1
+    FilmCollection.from_dir(filenames)
+  else
+    FilmCollection.from_site
+  end
 
 films.directors.each_with_index { |director, index| puts "#{index + 1}: #{director}" }
 
-puts ConsoleInterface.greeting_user
 user_choice = ConsoleInterface.input_choice
 # to do from film_collection and if/elsif/end choise where source
 director = films.directors[user_choice - 1]
 
-films_for_user = films.select { |film| film.director == director }.sample
+films_for_user = films.films_by_director(director).sample
 
 output_message = ConsoleInterface.message_with_film(films_for_user)
 puts output_message

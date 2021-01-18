@@ -29,6 +29,6 @@ class FilmCollection
   end
 
   def films_by_director(director)
-    films.select { | film | film.director == director }
+    @films.select { | film | film.director == director }
   end
 end
