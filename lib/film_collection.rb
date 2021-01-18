@@ -13,11 +13,11 @@ class FilmCollection
     new(films)
   end
 
-  def self.from_site(site_path)
+  def self.from_site
     films_from_site = ParserSite.parsing_from_site.map do |title, year, director|
         Film.new(title, director, year)
       end
-    new(films)
+    new(films_from_site)
   end
 
   def initialize(films)
@@ -25,7 +25,7 @@ class FilmCollection
   end
 
   def directors
-    @directors ||= films.map(&:director).uniq
+    @directors ||= @films.map(&:director).uniq
   end
 
   def films_by_director(director)
