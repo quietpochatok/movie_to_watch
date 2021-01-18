@@ -1,4 +1,3 @@
-require 'pry'
 require_relative 'lib/film'
 require_relative 'lib/film_collection'
 require_relative 'lib/console_interface'
