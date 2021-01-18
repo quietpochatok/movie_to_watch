@@ -5,12 +5,12 @@ module ConsoleInterface
       2. Со страницы википедии, в рубрике 150 лучших фильмов"
   end
 
-  def self.choice_variant_for_recomendation
+  def self.choice_sourse_for_recomendation
     STDIN.gets.to_i
   end
 
   def self.input_choice
-    user_input = STDIN.gets.to_i
+    STDIN.gets.to_i
   end
 
   def self.message_with_film(film)
