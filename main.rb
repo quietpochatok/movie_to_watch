@@ -10,11 +10,11 @@ user_choice_sourse_for_recom_films = ConsoleInterface.choice_sourse_for_recomend
 films =
   user_choice_sourse_for_recom_films == 1 ? FilmCollection.from_dir(filenames) : FilmCollection.from_site
 
-films.directors.each_with_index { |director, index| puts "#{index + 1}: #{director}" }
+films.directors.reject { |i| i == nil }.each_with_index { |director, index| puts "#{index + 1}: #{director}" }
 
 user_choice_director = ConsoleInterface.input_choice
 
-director = films.directors[user_choice_director - 1]
+director = films.directors[user_choice_director]
 
 films_for_user = films.films_by_director(director).sample
 
