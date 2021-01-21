@@ -14,7 +14,7 @@ class FilmCollection
   end
 
   def self.from_site
-    films_from_site = ParserSite.parsing_page_site.map do |title, year, director|
+    films_from_site = ParserSite.parsing_page_wiki_films_to_IMDb.map do |title, year, director|
         Film.new(title, director, year)
       end
     new(films_from_site)

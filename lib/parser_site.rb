@@ -1,13 +1,14 @@
 require 'nokogiri'
 require 'open-uri'
-require "cgi"
+require 'cgi'
+require 'addressable/uri'
 
 module ParserSite
-  YOUR_URL = 'https://ru.wikipedia.org/wiki/250' << CGI.escape('_лучших_фильмов_по_версии_IMDb')
+  YOUR_URL = 'https://ru.wikipedia.org/wiki/250_лучших_фильмов_по_версии_IMDb'
   extend self
 
-  def parsing_page_site
-    doc = Nokogiri::HTML(URI.open(YOUR_URL))
+  def parsing_page_wiki_films_to_IMDb
+    doc = Nokogiri::HTML(URI.open(Addressable::URI.encode(YOUR_URL)))
 
     table_row = doc.css('#mw-content-text .mw-parser-output table/tbody/tr')
       data_films = table_row.map { |row| row.css('td/a').map(&:content) }
